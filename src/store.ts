@@ -1,7 +1,10 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit"
+import todosReducer from "./components/todos/todos.slice"
 
 export const store = configureStore({
-  reducer: {}
+  reducer: {
+    todos: todosReducer
+  }
 })
 
 export type RootState = ReturnType<typeof store.getState>
