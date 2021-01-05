@@ -1,9 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { RootState } from "../../store"
-import { nanoid } from "nanoid"
 
-type Todo = {
-  id: string
+export type Todo = {
+  id: number
   text: string
   complete: boolean
 }
@@ -11,6 +10,8 @@ type Todo = {
 type TodosState = Todo[]
 
 const initialState: TodosState = []
+
+let nextTodoId = 0
 
 export const todosSlice = createSlice({
   name: "todos",
@@ -21,18 +22,23 @@ export const todosSlice = createSlice({
         s.push(action.payload)
       },
       prepare: (text: string) => {
-        const id = nanoid()
-        const complete = false
-
-        return { payload: { id, text, complete } }
+        return { payload: { id: nextTodoId++, text, complete: false } }
       }
     },
     removeTodo: (s, action: PayloadAction<Todo>) =>
-      s.filter((todo) => action.payload.id !== todo.id)
+      s.filter((todo) => action.payload.id !== todo.id),
+    toggleTodo: (s, action: PayloadAction<Todo>) =>
+      s.map((todo) => {
+        if (todo.id === action.payload.id) {
+          return { ...todo, complete: !todo.complete }
+        }
+
+        return todo
+      })
   }
 })
 
-export const { addTodo, removeTodo } = todosSlice.actions
+export const { addTodo, removeTodo, toggleTodo } = todosSlice.actions
 
 export const selectTodos = (s: RootState) => s.todos
 
