@@ -1,3 +1,4 @@
+import AddTodo from "../add-todo"
 import "./app.css"
 
 function App() {
@@ -5,6 +6,8 @@ function App() {
     <div className="app">
       <header className="app-header">
         <h1>Todo</h1>
+
+        <AddTodo />
       </header>
     </div>
   )

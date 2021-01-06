@@ -1,6 +1,3 @@
-// ADD TODO:
-// Todo contains a body.
-// Todo is added to the todos state.
-const AddTodo = {}
+import AddTodo from "./add-todo"
 
 export default AddTodo
