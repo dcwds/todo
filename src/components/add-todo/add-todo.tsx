@@ -15,8 +15,11 @@ const AddTodo = () => {
   }
 
   const handleAddTodo = () => {
+    if (todo.length) {
+      dispatch(addTodo(todo))
+    }
+
     setTodo("")
-    dispatch(addTodo(todo))
   }
 
   return (
@@ -28,7 +31,9 @@ const AddTodo = () => {
         onChange={(e) => setTodo(e.target.value)}
         onKeyPress={(e) => handleAddTodoOnEnter(e)}
       />
-      <button onClick={handleAddTodo}>Add</button>
+      <button onClick={handleAddTodo} disabled={!todo.length}>
+        Add
+      </button>
     </Fragment>
   )
 }
