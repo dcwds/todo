@@ -25,13 +25,18 @@ const AddTodo = () => {
   return (
     <Fragment>
       <input
+        data-testid="add-todo-input"
         type="text"
         placeholder="Todo..."
         value={todo}
         onChange={(e) => setTodo(e.target.value)}
         onKeyPress={(e) => handleAddTodoOnEnter(e)}
       />
-      <button onClick={handleAddTodo} disabled={!todo.length}>
+      <button
+        data-testid="add-todo-button"
+        onClick={handleAddTodo}
+        disabled={!todo.length}
+      >
         Add
       </button>
     </Fragment>
