@@ -23,8 +23,7 @@ describe("Todos Reducer", () => {
   it("handles toggleTodo", () => {
     expect(todosReducer([mockTodo], toggleTodo(mockTodo))).toEqual([
       {
-        id: mockTodo.id,
-        text: mockTodo.text,
+        ...mockTodo,
         complete: !mockTodo.complete
       }
     ])
@@ -43,7 +42,6 @@ describe("Todos Reducer", () => {
       complete: false
     }
 
-    expect(todosReducer([], addTodo(todo1.text))).toEqual([todo1])
     expect(todosReducer([todo1], addTodo(todo2.text))).toEqual([todo1, todo2])
   })
 })
