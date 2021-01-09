@@ -28,10 +28,7 @@ describe("<AddTodo />", () => {
   it("calls addTodo when input with value is submitted via button", () => {
     const { input, button } = getAddTodoElements()
 
-    fireEvent.change(input, {
-      target: { value: mockTodoText }
-    })
-
+    fireEvent.change(input, { target: { value: mockTodoText } })
     fireEvent.click(button)
 
     expect(store.dispatch).toHaveBeenCalledWith(addTodo(mockTodoText))

@@ -1,6 +1,3 @@
-// TODO:
-// body (string)
-// complete (bool)
-const Todo = {}
+import Todo from "./todo"
 
 export default Todo
