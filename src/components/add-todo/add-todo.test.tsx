@@ -1,41 +1,51 @@
 import AddTodo from "./add-todo"
-import { cleanup, fireEvent } from "@testing-library/react"
+import { fireEvent } from "@testing-library/react"
 import { MockStore } from "redux-mock-store"
 import { renderWithProvider, makeMockStore } from "../../utils/test-utils"
-import { Todo, addTodo } from "../todos/todos.slice"
+import { addTodo } from "../todos/todos.slice"
 
 describe("<AddTodo />", () => {
   let store: MockStore
-  const mockTodo: Todo = {
-    id: 0,
-    text: "test todo",
-    complete: false
-  }
-  const mockAddTodoAction = {
-    type: addTodo.type,
-    payload: mockTodo
-  }
+  let getAddTodoElements: Function
+  const mockTodoText = "test todo"
 
   beforeEach(() => {
     store = makeMockStore()
-    store.clearActions()
-  })
+    getAddTodoElements = () => {
+      const { getByTestId } = renderWithProvider(<AddTodo />, { store })
 
-  afterEach(cleanup)
+      return {
+        input: getByTestId("add-todo-input"),
+        button: getByTestId("add-todo-button")
+      }
+    }
+  })
 
   it("renders correctly", () => {
-    renderWithProvider(<AddTodo />, { store })
+    getAddTodoElements()
   })
 
-  it("calls addTodo action when input with value is submitted via button", () => {
-    const { getByTestId } = renderWithProvider(<AddTodo />, { store })
+  it("calls addTodo when input with value is submitted via button", () => {
+    const { input, button } = getAddTodoElements()
 
-    fireEvent.change(getByTestId("add-todo-input"), {
-      target: { value: mockTodo.text }
+    fireEvent.change(input, {
+      target: { value: mockTodoText }
     })
 
-    fireEvent.click(getByTestId("add-todo-button"))
+    fireEvent.click(button)
 
-    expect(store.getActions()).toEqual([mockAddTodoAction])
+    expect(store.dispatch).toHaveBeenCalledWith(addTodo(mockTodoText))
+  })
+
+  it("calls addTodo when input with value is submitted via Enter keypress", () => {
+    const { input } = getAddTodoElements()
+
+    fireEvent.change(input, {
+      target: { value: mockTodoText }
+    })
+
+    fireEvent.keyDown(input, { key: "Enter", code: "Enter" })
+
+    expect(store.dispatch).toHaveBeenCalledWith(addTodo(mockTodoText))
   })
 })

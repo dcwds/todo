@@ -31,18 +31,19 @@ describe("Todos Reducer", () => {
   })
 
   it("increments todo IDs", () => {
-    const todo1 = "this is a todo"
-    const todo2 = "this is another todo"
+    const todo1 = {
+      id: 0,
+      text: "this is a todo",
+      complete: false
+    }
 
-    expect(addTodo(todo1).payload).toEqual({
+    const todo2 = {
       id: 1,
-      complete: false,
-      text: todo1
-    })
-    expect(addTodo(todo2).payload).toEqual({
-      id: 2,
-      complete: false,
-      text: todo2
-    })
+      text: "this is another todo",
+      complete: false
+    }
+
+    expect(todosReducer([], addTodo(todo1.text))).toEqual([todo1])
+    expect(todosReducer([todo1], addTodo(todo2.text))).toEqual([todo1, todo2])
   })
 })

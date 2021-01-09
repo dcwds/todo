@@ -30,7 +30,7 @@ const AddTodo = () => {
         placeholder="Todo..."
         value={todo}
         onChange={(e) => setTodo(e.target.value)}
-        onKeyPress={(e) => handleAddTodoOnEnter(e)}
+        onKeyDown={(e) => handleAddTodoOnEnter(e)}
       />
       <button
         data-testid="add-todo-button"

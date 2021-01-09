@@ -11,19 +11,19 @@ type TodosState = Todo[]
 
 const initialState: TodosState = []
 
-let nextTodoId = 0
+const nextTodoId = (todos: TodosState) =>
+  todos.reduce((maxId, todo) => Math.max(todo.id, maxId), -1) + 1
 
 export const todosSlice = createSlice({
   name: "todos",
   initialState,
   reducers: {
-    addTodo: {
-      reducer: (s, action: PayloadAction<Todo>) => {
-        s.push(action.payload)
-      },
-      prepare: (text: string) => {
-        return { payload: { id: nextTodoId++, text, complete: false } }
-      }
+    addTodo: (s, action: PayloadAction<string>) => {
+      s.push({
+        id: nextTodoId(s),
+        text: action.payload,
+        complete: false
+      })
     },
     removeTodo: (s, action: PayloadAction<Todo>) =>
       s.filter((todo) => action.payload.id !== todo.id),
