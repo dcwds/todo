@@ -60,14 +60,27 @@ export const todosSlice = createSlice({
   }
 })
 
+const getFilteredTodos = (todos: Todo[], filter: TodosFilter) => {
+  switch (filter) {
+    case "complete":
+      return todos.filter((todo) => todo.complete)
+    case "incomplete":
+      return todos.filter((todo) => !todo.complete)
+    default:
+      return todos
+  }
+}
+
+export const selectTodos = (s: RootState) => s.todos.items
+export const selectFilteredTodos = (s: RootState) =>
+  getFilteredTodos(s.todos.items, s.todos.filter)
+export const selectTodosFilter = (s: RootState) => s.todos.filter
+
 export const {
   addTodo,
   removeTodo,
   toggleTodo,
   setTodosFilter
 } = todosSlice.actions
-
-export const selectTodos = (s: RootState) => s.todos.items
-export const selectTodosFilter = (s: RootState) => s.todos.filter
 
 export default todosSlice.reducer
