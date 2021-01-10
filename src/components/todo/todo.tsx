@@ -13,7 +13,9 @@ const Todo = (todo: TodoType) => {
         defaultChecked={todo.complete}
         onClick={(e) => dispatch(toggleTodo(todo))}
       />
-      <p className="todo-text">{todo.text}</p>
+      <p data-testid="todo-text" className="todo-text">
+        {todo.text}
+      </p>
     </li>
   )
 }

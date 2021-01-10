@@ -21,8 +21,8 @@ describe("<AddTodo />", () => {
     }
   })
 
-  it("renders correctly", () => {
-    getAddTodoElements()
+  it("renders without crashing", () => {
+    renderWithProvider(<AddTodo />, { store })
   })
 
   it("calls addTodo when input with value is submitted via button", () => {
