@@ -2,7 +2,8 @@ import todosReducer, {
   Todo,
   addTodo,
   removeTodo,
-  toggleTodo
+  toggleTodo,
+  setTodosFilter
 } from "./todos.slice"
 
 const mockTodo: Todo = {
@@ -36,6 +37,12 @@ describe("Todos Reducer", () => {
         }
       ]
     })
+  })
+
+  it("handles setTodosFilter", () => {
+    expect(
+      todosReducer({ filter: "all", items: [] }, setTodosFilter("all"))
+    ).toEqual({ filter: "all", items: [] })
   })
 
   it("increments todo IDs", () => {
