@@ -20,7 +20,7 @@ type WrapperProps = {
 export const renderWithProvider = (
   ui: ReactElement,
   {
-    initialState = { todos: [] },
+    initialState = { todos: { filter: "all", items: [] } },
     store = makeMockStore(initialState),
     ...renderOptions
   } = {}

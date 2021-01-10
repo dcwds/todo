@@ -15,7 +15,7 @@ function App() {
         <AddTodo />
       </header>
 
-      <Todos todos={todos} />
+      {!!todos.length && <Todos todos={todos} />}
     </div>
   )
 }

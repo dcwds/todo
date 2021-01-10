@@ -13,20 +13,29 @@ const mockTodo: Todo = {
 
 describe("Todos Reducer", () => {
   it("handles addTodo", () => {
-    expect(todosReducer([], addTodo(mockTodo.text))).toEqual([mockTodo])
+    expect(
+      todosReducer({ filter: "all", items: [] }, addTodo(mockTodo.text))
+    ).toEqual({ filter: "all", items: [mockTodo] })
   })
 
   it("handles removeTodo", () => {
-    expect(todosReducer([mockTodo], removeTodo(mockTodo))).toEqual([])
+    expect(
+      todosReducer({ filter: "all", items: [mockTodo] }, removeTodo(mockTodo))
+    ).toEqual({ filter: "all", items: [] })
   })
 
   it("handles toggleTodo", () => {
-    expect(todosReducer([mockTodo], toggleTodo(mockTodo))).toEqual([
-      {
-        ...mockTodo,
-        complete: !mockTodo.complete
-      }
-    ])
+    expect(
+      todosReducer({ filter: "all", items: [mockTodo] }, toggleTodo(mockTodo))
+    ).toEqual({
+      filter: "all",
+      items: [
+        {
+          ...mockTodo,
+          complete: !mockTodo.complete
+        }
+      ]
+    })
   })
 
   it("increments todo IDs", () => {
@@ -42,6 +51,8 @@ describe("Todos Reducer", () => {
       complete: false
     }
 
-    expect(todosReducer([todo1], addTodo(todo2.text))).toEqual([todo1, todo2])
+    expect(
+      todosReducer({ filter: "all", items: [todo1] }, addTodo(todo2.text))
+    ).toEqual({ filter: "all", items: [todo1, todo2] })
   })
 })
