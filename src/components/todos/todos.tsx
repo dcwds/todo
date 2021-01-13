@@ -7,13 +7,11 @@ type TodosProps = {
 }
 
 const Todos = ({ todos }: TodosProps) => (
-  <div className="todos">
-    <ul>
-      {todos.map((todo) => (
-        <Todo {...todo} key={todo.id} />
-      ))}
-    </ul>
-  </div>
+  <ul className="flex flex-col">
+    {todos.map((todo) => (
+      <Todo {...todo} key={todo.id} />
+    ))}
+  </ul>
 )
 
 export default Todos

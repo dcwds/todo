@@ -25,14 +25,16 @@ const AddTodo = () => {
   return (
     <Fragment>
       <input
+        className="w-full py-2 px-4 rounded-md bg-gray-50 text-gray-900 placeholder-gray-900"
         data-testid="add-todo-input"
         type="text"
-        placeholder="Todo..."
+        placeholder="Write a todo..."
         value={todo}
         onChange={(e) => setTodo(e.target.value)}
         onKeyDown={(e) => handleAddTodoOnEnter(e)}
       />
       <button
+        className="btn"
         data-testid="add-todo-button"
         onClick={handleAddTodo}
         disabled={!todo.length}

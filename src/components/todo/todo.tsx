@@ -6,7 +6,7 @@ const Todo = (todo: TodoType) => {
   const dispatch = useDispatch()
 
   return (
-    <li className="todo">
+    <li className="todo flex space-x-4 py-2">
       <input
         data-testid="todo-checkbox"
         type="checkbox"
