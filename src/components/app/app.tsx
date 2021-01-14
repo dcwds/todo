@@ -1,13 +1,31 @@
+import { useEffect } from "react"
 import AddTodo from "../add-todo"
 import Todos from "../todos"
 import TodosFilters from "../todos-filters"
 import { useSelector } from "react-redux"
-import { selectTodos, selectFilteredTodos } from "../todos/todos.slice"
+import {
+  selectTodos,
+  selectCompleteTodos,
+  selectIncompleteTodos,
+  selectFilteredTodos
+} from "../todos/todos.slice"
 import "./app.css"
 
 function App() {
   const todos = useSelector(selectTodos)
+  const completeTodos = useSelector(selectCompleteTodos)
+  const incompleteTodos = useSelector(selectIncompleteTodos)
   const filteredTodos = useSelector(selectFilteredTodos)
+
+  useEffect(() => {
+    const titleTemplate = " - Todos"
+
+    if (todos.length && incompleteTodos.length) {
+      document.title = `${completeTodos.length}/${todos.length} complete ${titleTemplate}`
+    } else {
+      document.title = `Write a todo ${titleTemplate}`
+    }
+  })
 
   return (
     <div className="app">

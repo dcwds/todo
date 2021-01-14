@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit"
+import { createSlice, createSelector, PayloadAction } from "@reduxjs/toolkit"
 import { RootState } from "../../store"
 
 export type Todo = {
@@ -60,21 +60,32 @@ export const todosSlice = createSlice({
   }
 })
 
-const getFilteredTodos = (todos: Todo[], filter: TodosFilter) => {
-  switch (filter) {
-    case "complete":
-      return todos.filter((todo) => todo.complete)
-    case "incomplete":
-      return todos.filter((todo) => !todo.complete)
-    default:
-      return todos
-  }
-}
-
-export const selectTodos = (s: RootState) => s.todos.items
-export const selectFilteredTodos = (s: RootState) =>
-  getFilteredTodos(s.todos.items, s.todos.filter)
 export const selectTodosFilter = (s: RootState) => s.todos.filter
+export const selectTodos = (s: RootState) => s.todos.items
+export const selectCompleteTodos = createSelector(
+  selectTodos,
+  (todos: Todo[]) => todos.filter((todo) => todo.complete)
+)
+export const selectIncompleteTodos = createSelector(
+  selectTodos,
+  (todos: Todo[]) => todos.filter((todo) => !todo.complete)
+)
+export const selectFilteredTodos = createSelector(
+  selectTodos,
+  selectCompleteTodos,
+  selectIncompleteTodos,
+  selectTodosFilter,
+  (todos, completeTodos, incompleteTodos, filter) => {
+    switch (filter) {
+      case "complete":
+        return completeTodos
+      case "incomplete":
+        return incompleteTodos
+      default:
+        return todos
+    }
+  }
+)
 
 export const {
   addTodo,
