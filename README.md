@@ -13,7 +13,7 @@ Create a todo list and filter it by todo completion status.
 
 ## Motivations
 
-There are a few goals I have with this project that have very little to do with project scope and much to do with implementation.
+There are a few goals I had with this project that have very little to do with project scope and much to do with implementation.
 
 ### Testing
 
@@ -25,4 +25,4 @@ There are many styling strategies I've played with over the years and I'm happy 
 
 ### State
 
-Some might consider it silly to introduce Redux in a project with this narrow of a scope. Why not the React Context API? Well, I just wanted an excuse to familiarize myself with Redux Toolkit more. I encountered a challenge where I had tried to use the `prepare` callback within the `addTodo` action creator, where I was assigning and incrementing a dynamic ID through a `nextTodoId` variable, however this made the function impure, and was difficult to test. I considered dependency injection but ended up changing the implementation to resolve the `nextTodoId` based on the `todosSlice` state value.
+Some might consider it silly to introduce Redux in a project with this narrow of a scope. Why not the React Context API? Well, I just wanted an excuse to familiarize myself with Redux Toolkit more. I encountered a challenge in which I had tried to use the `prepare` callback within the `addTodo` action creator, where I was assigning and incrementing a dynamic ID through a `nextTodoId` variable. However this made the function impure and was difficult to test. I considered dependency injection but ended up changing the implementation to resolve the `nextTodoId` based on the `todosSlice` state value.
