@@ -1,70 +1,28 @@
-# Getting Started with Create React App
+# Todos
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Create a todo list and filter it by todo completion status.
 
-## Available Scripts
+[View on Netlify](https://dcwds-todo.netlify.app)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/8d2579e2-04df-4f2e-9d5a-c3b132785eaa/deploy-status)](https://app.netlify.com/sites/dcwds-todo/deploys)
 
-In the project directory, you can run:
+## Technology
 
-### `npm start`
+- Bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- State management with [Redux](https://github.com/reduxjs/redux) and [Redux Toolkit](https://github.com/reduxjs/redux-toolkit).
+- Styles with [Tailwind CSS](https://github.com/tailwindlabs/tailwindcss).
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Motivations
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+There are a few goals I have with this project that have very little to do with project scope and much to do with implementation.
 
-### `npm test`
+### Testing
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+This is the first project where I have written meaningful tests. I experienced growing pains while learning the fundamentals of React Testing Library in addition to testing rendered components that are provided a mock Redux store. In a couple instances, I found myself questioning some of my implementations of functionality based on how difficult they were to test. This was insightful and something I would not have encountered had I not tested my code.
 
-### `npm run build`
+### Styling
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+There are many styling strategies I've played with over the years and I'm happy to have found Tailwind and was able to explore it within this project. I enjoy the explicit nature of the framework, which removes the tendency to make abstractions early. I am also incredibly pleased with the boilerplate configurations and how little effort is required to tweak the configurations toward your aesthetic. I expect to use Tailwind in future projects.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### State
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Some might consider it silly to introduce Redux in a project with this narrow of a scope. Why not the React Context API? Well, I just wanted an excuse to familiarize myself with Redux Toolkit more. I encountered a challenge where I had tried to use the `prepare` callback within the `addTodo` action creator, where I was assigning and incrementing a dynamic ID through a `nextTodoId` variable, however this made the function impure, and was difficult to test. I considered dependency injection but ended up changing the implementation to resolve the `nextTodoId` based on the `todosSlice` state value.
