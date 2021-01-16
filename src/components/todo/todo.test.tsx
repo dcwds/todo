@@ -1,7 +1,7 @@
 import { renderWithProvider, makeMockStore } from "../../utils/test-utils"
 import { MockStore } from "redux-mock-store"
 import Todo from "./todo"
-import { Todo as TodoType, toggleTodo } from "../todos/todos.slice"
+import { Todo as TodoType, toggleTodo, removeTodo } from "../todos/todos.slice"
 import { fireEvent } from "@testing-library/react"
 
 describe("<Todo />", () => {
@@ -23,7 +23,8 @@ describe("<Todo />", () => {
 
       return {
         checkbox: getByTestId("todo-checkbox"),
-        text: getByTestId("todo-text")
+        text: getByTestId("todo-text"),
+        remove: getByTestId("todo-remove")
       }
     }
   })
@@ -37,5 +38,12 @@ describe("<Todo />", () => {
 
     fireEvent.click(checkbox)
     expect(store.dispatch).toHaveBeenCalledWith(toggleTodo(mockTodo))
+  })
+
+  it("handles removeTodo when remove button is clicked", () => {
+    const { remove } = getTodoElements()
+
+    fireEvent.click(remove)
+    expect(store.dispatch).toHaveBeenCalledWith(removeTodo(mockTodo))
   })
 })

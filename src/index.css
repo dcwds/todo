@@ -2,24 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  button {
+    @apply select-none;
+  }
+
+  button:focus {
+    @apply outline-none;
+  }
+}
+
 body {
-  @apply bg-gray-800 text-gray-100;
+  @apply bg-gray-darkest text-white;
 }
 
 .btn {
-  @apply py-2 px-8 rounded-md select-none bg-blue-600 font-bold transition-colors;
+  @apply py-2 px-8 rounded-md bg-blue-600 font-bold text-white transition-colors;
 }
 
 .btn:disabled {
-  @apply pointer-events-none bg-gray-700 text-gray-300;
-}
-
-.btn:focus {
-  @apply outline-none;
+  @apply pointer-events-none bg-gray-darkest text-gray-normal;
 }
 
 .btn-filter {
-  @apply py-2 px-6 tracking-wide text-sm select-none text-gray-400 capitalize font-bold rounded-full transition-colors;
+  @apply py-2 px-5 text-xs select-none text-gray-normal capitalize font-bold rounded-full transition-colors;
 }
 
 .btn-filter:hover {
@@ -36,4 +42,12 @@ body {
 
 .btn-filter.active:hover {
   @apply text-blue-700;
+}
+
+.todo {
+  @apply bg-gray-dark flex items-center space-x-3 p-3 mb-3 rounded-md;
+}
+
+.todo-text {
+  @apply mr-3;
 }

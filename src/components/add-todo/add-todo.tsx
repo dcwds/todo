@@ -25,7 +25,7 @@ const AddTodo = () => {
   return (
     <Fragment>
       <input
-        className="w-full py-2 px-4 rounded-md bg-gray-50 text-gray-900 placeholder-gray-900"
+        className="w-full py-2 px-4 rounded-md bg-white text-gray-darkest placeholder-gray-darkest"
         data-testid="add-todo-input"
         type="text"
         placeholder="Write a todo..."

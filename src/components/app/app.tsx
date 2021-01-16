@@ -30,8 +30,8 @@ function App() {
 
   return (
     <div className="app">
-      <div className="bg-gray-900">
-        <header className="flex items-center justify-between mx-auto px-3 md:px-4 py-4 md:py-5 mb-8 md:mb-16 md:max-w-xl">
+      <div className="bg-gray-dark">
+        <header className="flex items-center justify-between mx-auto px-3 py-4 md:py-5 mb-8 md:mb-12 md:max-w-xl">
           <a
             href="/"
             className="font-bold hover:text-blue-400 transition-colors"
@@ -40,20 +40,20 @@ function App() {
           </a>
           <a
             href="https://github.com/dcwds/todo"
-            className="hover:opacity-100 opacity-70 transition-opacity"
+            className="hover:text-white text-gray-normal transition-colors"
           >
-            <GitHubLogo height="28" width="28" />
+            <GitHubLogo className="fill-current" height="28" width="28" />
           </a>
         </header>
       </div>
 
-      <div className="mx-auto p-3 md:p-4 md:max-w-xl">
-        <div className="flex p-3 md:p-4 space-x-3 md:space-x-4 mb-8 md:mb-12 bg-gray-900 rounded-lg">
+      <div className="mx-auto p-2 md:p-3 md:max-w-xl">
+        <div className="flex p-3 space-x-3 mb-8 md:mb-12 bg-gray-dark rounded-lg">
           <AddTodo />
         </div>
 
         {!!todos.length && (
-          <div className="flex mb-6 md:mb-8 space-x-4">
+          <div className="flex mb-4 md:mb-6 space-x-3">
             <TodosFilters />
           </div>
         )}
